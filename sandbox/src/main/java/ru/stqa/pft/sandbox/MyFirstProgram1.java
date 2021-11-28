@@ -13,6 +13,8 @@ public class MyFirstProgram1 {
 
 		System.out.println("Площадь квадрата со стороной " + s.l + " = " + s.area());
 		System.out.println("Площадь прямоугольника со сторонами " + r.a + " и " + r.b + " = " + r.area());
+
+
 	}
 
 	public static void hello(String somebody) {
