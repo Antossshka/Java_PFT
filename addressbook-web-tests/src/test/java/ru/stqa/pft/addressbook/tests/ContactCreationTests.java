@@ -4,7 +4,7 @@ import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 
-public class AddContactTests extends TestBase{
+public class ContactCreationTests extends TestBase{
 
   @Test
   public void testAddContact() throws Exception {
