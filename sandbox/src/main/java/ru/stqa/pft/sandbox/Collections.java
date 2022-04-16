@@ -14,5 +14,9 @@ public class Collections {
     for (String l : languages) {
       System.out.println("Я хочу выучить " + l);
     }
+
+    for (int i = 1; i < languages.size(); i++) {
+      System.out.println("Я хочу выучить " + languages.get(i));
+    }
   }
 }
