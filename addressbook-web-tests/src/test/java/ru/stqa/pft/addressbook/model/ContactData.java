@@ -16,6 +16,7 @@ public class ContactData {
     this.firstName = firstName;
     this.secondName = secondName;
     this.group = group;
+    this.id = Integer.MAX_VALUE;
   }
 
   public ContactData(String homePhoneNumber, String email, String firstName, String secondName, String group, int id) {
