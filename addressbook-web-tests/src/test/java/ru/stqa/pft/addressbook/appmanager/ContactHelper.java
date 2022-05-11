@@ -79,8 +79,6 @@ public class ContactHelper extends HelperBase{
       String firstname = values.get(2).getText();
       ContactData contact = new ContactData(null, null, firstname, lastname, null);
       contacts.add(contact);
-      System.out.println("lastname"+ " " + lastname);
-      System.out.println("firstname"+ " " + firstname);
     }
     return contacts;
   }
