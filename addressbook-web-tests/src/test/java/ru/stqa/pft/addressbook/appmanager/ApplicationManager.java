@@ -3,12 +3,12 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import ru.stqa.pft.addressbook.ContactData;
+import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.time.Duration;
 
 public class ApplicationManager {
-  protected WebDriver wd;
+  WebDriver wd;
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
