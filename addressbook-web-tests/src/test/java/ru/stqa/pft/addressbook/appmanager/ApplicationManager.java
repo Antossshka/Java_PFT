@@ -22,7 +22,6 @@ public class ApplicationManager {
   }
 
   public void init() {
-    String browser = Browser.CHROME.browserName();
     if (browser == Browser.CHROME.browserName()) {
       wd = new ChromeDriver();
     } else if (browser == Browser.EDGE.browserName()) {
