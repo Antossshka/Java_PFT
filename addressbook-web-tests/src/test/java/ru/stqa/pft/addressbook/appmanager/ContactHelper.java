@@ -29,12 +29,17 @@ public class ContactHelper extends HelperBase{
     type(By.name("email"), contactData.getEmail());
     type(By.name("address"), contactData.getAddress());
 
-    if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-    } else {
+    if (creation)  {
+      try {
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      } catch (NoSuchElementException ex) {
+      }
+      } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }
+
+
 
   public void initContactCreation() {
     click(By.linkText("add new"));
@@ -65,20 +70,11 @@ public class ContactHelper extends HelperBase{
     fillContactForm(contact, creation);
     submitContactCreation();
     returnToHomePage();
-    wd.findElement(By.xpath("//select[@name='new_group']"));
   }
 
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public boolean isThereAnAvailableGroup(ContactData contactData, boolean creation) {
-    try {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-      return true;
-    } catch (NoSuchElementException ex) {
-      return false;
-   }
-  }
 }
 

@@ -8,11 +8,8 @@ public class ContactCreationTest extends TestBase {
 
   @Test
   public void testContactCreation() throws Exception {
-    app.contactHelper().initContactCreation();
-    if (! app.contactHelper().isThereAnAvailableGroup(new ContactData("Dmitry", "Blinovsky", "Petrov", "89991112299", "petrov.db@mail.ru", "Mowcow", "test1"), true)); {
-      app.navigationHelper().gotoGroupPage();
-      app.groupHelper().createGroup(new GroupData("test1", null, null));
+    app.contactHelper().createContact(new ContactData("Dmitry", "Blinovsky", "Petrov", "89991112299", "petrov.db@mail.ru", "Mowcow", "test1"), true);
     }
   }
 
-}
+
