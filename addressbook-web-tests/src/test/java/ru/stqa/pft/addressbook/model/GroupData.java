@@ -19,7 +19,7 @@ public class GroupData {
     this.name = name;
     this.header = header;
     this.footer = footer;
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
   }
 
   @Override

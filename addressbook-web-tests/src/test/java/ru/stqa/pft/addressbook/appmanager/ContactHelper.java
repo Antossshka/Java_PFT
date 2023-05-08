@@ -3,12 +3,16 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-public class ContactHelper extends HelperBase{
+import java.util.ArrayList;
+import java.util.List;
+
+public class ContactHelper extends HelperBase {
   public ContactHelper(WebDriver wd) {
     super(wd);
   }
@@ -29,16 +33,15 @@ public class ContactHelper extends HelperBase{
     type(By.name("email"), contactData.getEmail());
     type(By.name("address"), contactData.getAddress());
 
-    if (creation)  {
+    if (creation) {
       try {
         new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
       } catch (NoSuchElementException ex) {
       }
-      } else {
+    } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }
-
 
 
   public void initContactCreation() {
@@ -74,6 +77,20 @@ public class ContactHelper extends HelperBase{
 
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
+  }
+
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element : elements) {
+      List<WebElement> values = element.findElements(By.tagName("td"));
+      int id = Integer.parseInt(values.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      String lastname = values.get(1).getText();
+      String firstname = values.get(2).getText();
+      ContactData contact = new ContactData(firstname, null, lastname, null, null, null, null,id);
+      contacts.add(contact);
+    }
+    return contacts;
   }
 
 }
