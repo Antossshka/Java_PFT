@@ -45,11 +45,11 @@ public class ApplicationManager {
     wd.quit();
   }
 
-  public GroupHelper groupHelper() {
+  public GroupHelper group() {
     return groupHelper;
   }
 
-  public NavigationHelper navigationHelper() {
+  public NavigationHelper goTo() {
     return navigationHelper;
   }
 
