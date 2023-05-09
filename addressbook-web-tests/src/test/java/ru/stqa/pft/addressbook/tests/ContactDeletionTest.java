@@ -17,7 +17,7 @@ public class ContactDeletionTest extends TestBase {
       app.contactHelper().createContact(new ContactData("Dmitry", "Blinovsky", "Petrov", "89991112299", "petrov.db@mail.ru", "Moscow", "test1"));
     }
     List<ContactData> before = app.contactHelper().getContactList();
-    app.contactHelper().selectContact();
+    app.contactHelper().selectContact(0);
     app.contactHelper().deleteSelectedContacts();
     app.contactHelper().confirmDeletionContacts();
     app.contactHelper().returnToHomePage();
