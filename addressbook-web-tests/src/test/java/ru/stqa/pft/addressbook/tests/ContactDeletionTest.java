@@ -11,7 +11,7 @@ public class ContactDeletionTest extends TestBase {
 
   @Test(enabled = false)
   public void testContactDeletion() throws Exception {
-    app.goTo().gotoHomePage();
+    app.navigationHelper().gotoHomePage();
     ContactData contact = new ContactData("Dmitry", "Blinovsky", "Petrov", "89991112299", "petrov.db@mail.ru", "Moscow", "test1");
     if (! app.contactHelper().isThereAContact()) {
       app.contactHelper().createContact(new ContactData("Dmitry", "Blinovsky", "Petrov", "89991112299", "petrov.db@mail.ru", "Moscow", "test1"));
