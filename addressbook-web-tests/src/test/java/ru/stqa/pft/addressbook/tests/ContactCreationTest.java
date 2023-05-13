@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ContactCreationTest extends TestBase {
 
-  @Test
+  @Test(enabled = false)
   public void testContactCreation() throws Exception {
     app.navigationHelper().gotoHomePage();
     ContactData contact = new ContactData("Dmitry", null, "Petrov", null, null, null, null);

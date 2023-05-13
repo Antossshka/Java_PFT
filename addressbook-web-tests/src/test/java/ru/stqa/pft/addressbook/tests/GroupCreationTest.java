@@ -5,7 +5,6 @@ import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class GroupCreationTest extends TestBase {
@@ -25,7 +24,6 @@ public class GroupCreationTest extends TestBase {
     before.sort(byId);
     after.sort(byId);
     Assert.assertEquals(before, after);
-    app.logout();
   }
 
 }
