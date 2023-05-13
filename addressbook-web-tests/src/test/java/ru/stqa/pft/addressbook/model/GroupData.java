@@ -3,24 +3,11 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class GroupData {
-  public final String name;
-  public final String header;
-  public final String footer;
-  private int id;
-
-  public GroupData(String name, String header, String footer, int id) {
-    this.name = name;
-    this.header = header;
-    this.footer = footer;
-    this.id = id;
-  }
-
-  public GroupData(String name, String header, String footer) {
-    this.name = name;
-    this.header = header;
-    this.footer = footer;
-    this.id = Integer.MAX_VALUE;
-  }
+  public String name;
+  public String header;
+  
+  public String footer;
+  private int id = Integer.MAX_VALUE;
 
   @Override
   public boolean equals(Object o) {
@@ -61,5 +48,25 @@ public class GroupData {
 
   public void setID(int id) {
     this.id = id;
+  }
+
+  public GroupData withName(String name) {
+    this.name = name;
+    return this;
+  }
+
+  public GroupData withHeader(String header) {
+    this.header = header;
+    return this;
+  }
+
+  public GroupData withFooter(String footer) {
+    this.footer = footer;
+    return this;
+  }
+
+  public GroupData withId(int id) {
+    this.id = id;
+    return this;
   }
 }
