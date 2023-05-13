@@ -11,7 +11,7 @@ public class ContactModificationTest extends TestBase{
 
   @Test(enabled = false)
   public void testContactModification() {
-    app.navigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     if (! app.contactHelper().isThereAContact()) {
       app.contactHelper().createContact(new ContactData("Dmitry", "Blinovsky", "Petrov", "89991112299", "petrov.db@mail.ru", "Moscow", "test1"));
     }
