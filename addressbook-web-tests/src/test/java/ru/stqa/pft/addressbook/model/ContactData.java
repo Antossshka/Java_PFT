@@ -11,6 +11,93 @@ public class ContactData {
   public String address;
   private String group;
   private int id = Integer.MAX_VALUE;
+  public String homePhone;
+  public String mobilePhone;
+  public String workPhone;
+  public String allPhones;
+  private String allEmails;
+  private String email2;
+  private String email3;
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  public String getMobile() {
+    return mobile;
+  }
+
+  public String getHomePhone() {
+    return homePhone;
+  }
+
+  public String getMobilePhone() {
+    return mobilePhone;
+  }
+
+  public String getWorkPhone() {
+    return workPhone;
+  }
+
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
+  public ContactData withMobile(String mobile) {
+    this.mobile = mobile;
+    return this;
+  }
+
+  public ContactData withHomePhone(String homePhone) {
+    this.homePhone = homePhone;
+    return this;
+  }
+  public ContactData withMobilePhone(String mobilePhone) {
+    this.mobilePhone = mobilePhone;
+    return this;
+  }
+
+  public ContactData withWorkPhone(String workPhone) {
+    this.workPhone = workPhone;
+    return this;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public String getEmail2() {
+    return email2;
+  }
+
+  public String getEmail3() {
+    return email3;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactData withAllEmail(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
+
+  public String getAllEmails() {
+    return allEmails;
+  }
+
+  public ContactData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+
+  public ContactData withEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
 
   public String getFirstname() {
     return firstname;
@@ -22,14 +109,6 @@ public class ContactData {
 
   public String getLastname() {
     return lastname;
-  }
-
-  public String getMobile() {
-    return mobile;
-  }
-
-  public String getEmail() {
-    return email;
   }
 
   public String getAddress() {
@@ -81,16 +160,6 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withMobile(String mobile) {
-    this.mobile = mobile;
-    return this;
-  }
-
-  public ContactData withEmail(String email) {
-    this.email = email;
-    return this;
-  }
-
   public ContactData withAddress(String address) {
     this.address = address;
     return this;
@@ -109,4 +178,6 @@ public class ContactData {
   public void setID(int id) {
     this.id = id;
   }
+
+
 }
