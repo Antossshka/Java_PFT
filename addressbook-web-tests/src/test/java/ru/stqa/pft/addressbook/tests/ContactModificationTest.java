@@ -8,9 +8,6 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-
 public class ContactModificationTest extends TestBase{
 
   @BeforeMethod
@@ -31,7 +28,7 @@ public class ContactModificationTest extends TestBase{
     app.contact().modify(contact);
     Contacts after = app.contact().all();
     Assert.assertEquals(after.size(), before.size());
-    
+
     MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.withOut(modifiedContact).withAdded(contact)));
   }
 

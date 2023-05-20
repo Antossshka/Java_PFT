@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.appmanager;
 
+import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -78,6 +79,7 @@ public class ContactHelper extends HelperBase {
     initContactCreation();
     fillContactForm(contact, true);
     submitContactCreation();
+    contactCache = null;
     returnToHomePage();
   }
 
@@ -86,6 +88,7 @@ public class ContactHelper extends HelperBase {
     fillContactForm(new ContactData().withFirstname("Dmitry").withLastname("Blinovsky").withMiddlename("Petrov")
             .withMobile("89991112299").withEmail("petrov.db@mail.ru").withAddress("Mowcow").withGroup("test1"), false);
     submitContactModification();
+    contactCache = null;
     returnToHomePage();
   }
 
@@ -100,6 +103,7 @@ public class ContactHelper extends HelperBase {
     selectContactById(contact.getId());
     deleteSelectedContacts();
     confirmDeletionContacts();
+    contactCache = null;
     returnToHomePage();
   }
 
@@ -121,8 +125,13 @@ public class ContactHelper extends HelperBase {
     return contacts;
   }
 
+  private Contacts contactCache = null;
+
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactCache != null) {
+      return new Contacts(contactCache);
+    }
+    contactCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
       List<WebElement> values = element.findElements(By.tagName("td"));
@@ -130,9 +139,9 @@ public class ContactHelper extends HelperBase {
       String lastname = values.get(1).getText();
       String firstname = values.get(2).getText();
       ContactData contact = new ContactData().withFirstname(firstname).withLastname(lastname).withId(id);
-      contacts.add(contact);
+      contactCache.add(contact);
     }
-    return contacts;
+    return new Contacts(contactCache);
   }
 }
 
