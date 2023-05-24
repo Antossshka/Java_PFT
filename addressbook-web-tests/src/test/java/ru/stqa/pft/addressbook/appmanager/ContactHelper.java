@@ -91,8 +91,7 @@ public class ContactHelper extends HelperBase {
 
   public void modify(ContactData contact) {
     initContactModificationById(contact.getId());
-    fillContactForm(new ContactData().withFirstname("Dmitry").withLastname("Blinovsky").withMiddlename("Petrov")
-            .withMobile("89991112299").withEmail("petrov.db@mail.ru").withAddress("Mowcow").withGroup("test1"), false);
+    fillContactForm(contact, false);
     submitContactModification();
     contactCache = null;
     returnToHomePage();
