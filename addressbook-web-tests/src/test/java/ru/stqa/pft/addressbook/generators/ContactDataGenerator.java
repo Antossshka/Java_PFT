@@ -50,7 +50,7 @@ public class ContactDataGenerator {
     List<ContactData> contacts = new ArrayList<ContactData>();
     for (int i = 0; i < count; i++) {
       contacts.add(new ContactData().withFirstname(String.format("Firstname %s", i)).withLastname(String.format("Lastname %s", i))
-              .withMiddlename(String.format("Middlename %s", i)).withMobilePhone(String.format("7999111221 %s", i)));
+              .withMiddlename(String.format("Middlename %s", i)).withMobilePhone(String.format("7999111221" + "%s", i)));
     }
     return contacts;
   }
