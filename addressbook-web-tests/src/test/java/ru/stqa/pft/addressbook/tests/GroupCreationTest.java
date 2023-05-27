@@ -18,32 +18,34 @@ public class GroupCreationTest extends TestBase {
 
   @DataProvider
   public Iterator<Object[]> validGroupsFromXml() throws IOException {
-    BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/groups.xml"));
-    String xml = "";
-    String line = reader.readLine();
-    while (line != null) {
-      xml += line;
-      line = reader.readLine();
+    try (BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/groups.xml"))) {
+      String xml = "";
+      String line = reader.readLine();
+      while (line != null) {
+        xml += line;
+        line = reader.readLine();
+      }
+      XStream xStream = new XStream();
+      xStream.processAnnotations(GroupData.class);
+      xStream.allowTypes(new Class[]{GroupData.class});
+      List<GroupData> groups = (List<GroupData>) xStream.fromXML(xml);
+      return groups.stream().map(g -> new Object[]{g}).toList().iterator();
     }
-    XStream xStream = new XStream();
-    xStream.processAnnotations(GroupData.class);
-    xStream.allowTypes(new Class[]{GroupData.class});
-    List<GroupData> groups = (List<GroupData>) xStream.fromXML(xml);
-    return groups.stream().map(g -> new Object[]{g}).toList().iterator();
   }
 
   @DataProvider
   public Iterator<Object[]> validGroupsFromJson() throws IOException {
-    BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/groups.json"));
-    String json = "";
-    String line = reader.readLine();
-    while (line != null) {
-      json += line;
-      line = reader.readLine();
+    try (BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/groups.json"))) {
+      String json = "";
+      String line = reader.readLine();
+      while (line != null) {
+        json += line;
+        line = reader.readLine();
+      }
+      Gson gson = new Gson();
+      List<GroupData> groups = gson.fromJson(json, new TypeToken<List<GroupData>>(){}.getType()); //List<GroupData>.class
+      return groups.stream().map(g -> new Object[]{g}).toList().iterator();
     }
-    Gson gson = new Gson();
-    List<GroupData> groups = gson.fromJson(json, new TypeToken<List<GroupData>>(){}.getType()); //List<GroupData>.class
-    return groups.stream().map(g -> new Object[]{g}).toList().iterator();
   }
 
   @Test(dataProvider = "validGroupsFromXml", enabled = true)
