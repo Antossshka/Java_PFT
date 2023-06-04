@@ -24,13 +24,13 @@ public class ContactModificationTest extends TestBase{
   public void testContactModification() {
     app.goTo().homePage();
     ensurePreconditions();
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData().withFirstname("Dmitry").withLastname("Blinovsky").withMiddlename("Petrov")
             .withMobile("89991112299").withEmail("petrov.db@mail.ru").withAddress("Mowcow").withId(modifiedContact.getId());
     app.contact().modify(contact);
     assertThat(app().contact().count(), equalTo(before.size()));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
 
     MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.withOut(modifiedContact).withAdded(contact)));
   }

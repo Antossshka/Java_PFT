@@ -42,16 +42,6 @@ public class ContactData {
   @Column(name = "work")
   @Type(type = "text")
   public String workPhone;
-
-  public File getPhoto() {
-    return new File(photo);
-  }
-
-  public ContactData withPhoto(File photo) {
-    this.photo = photo.getPath();
-    return this;
-  }
-
   @Transient
   public String allPhones;
   @Transient
@@ -63,6 +53,15 @@ public class ContactData {
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
+
+  public File getPhoto() {
+    return new File(photo);
+  }
+
+  public ContactData withPhoto(File photo) {
+    this.photo = photo.getPath();
+    return this;
+  }
 
   public String getAllPhones() {
     return allPhones;
