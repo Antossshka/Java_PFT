@@ -49,14 +49,6 @@ public class GroupData {
     return id;
   }
 
-  @Override
-  public String toString() {
-    return "GroupData{" +
-            "name='" + name + '\'' +
-            ", id='" + id + '\'' +
-            '}';
-  }
-
   public void setID(int id) {
     this.id = id;
   }
@@ -80,13 +72,32 @@ public class GroupData {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
+
     GroupData groupData = (GroupData) o;
-    return id == groupData.id && Objects.equals(name, groupData.name);
+
+    if (id != groupData.id) return false;
+    if (!Objects.equals(name, groupData.name)) return false;
+    if (!Objects.equals(header, groupData.header)) return false;
+    return Objects.equals(footer, groupData.footer);
+  }
+
+  @Override
+  public String toString() {
+    return "GroupData{" +
+            "name='" + name + '\'' +
+            ", header='" + header + '\'' +
+            ", footer='" + footer + '\'' +
+            ", id=" + id +
+            '}';
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, id);
+    int result = name != null ? name.hashCode() : 0;
+    result = 31 * result + (header != null ? header.hashCode() : 0);
+    result = 31 * result + (footer != null ? footer.hashCode() : 0);
+    result = 31 * result + id;
+    return result;
   }
 
   public GroupData withId(int id) {
