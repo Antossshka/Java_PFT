@@ -18,8 +18,6 @@ public class ContactData {
   @Expose
   @Column(name = "lastname")
   public String lastname;
-  @Transient
-  public String mobile;
   @Expose
   @Type(type = "text")
   public String email;
@@ -67,9 +65,7 @@ public class ContactData {
     return allPhones;
   }
 
-  public String getMobile() {
-    return mobile;
-  }
+
 
   public String getHomePhone() {
     return homePhone;
@@ -85,11 +81,6 @@ public class ContactData {
 
   public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;
-    return this;
-  }
-
-  public ContactData withMobile(String mobile) {
-    this.mobile = mobile;
     return this;
   }
 
@@ -168,25 +159,44 @@ public class ContactData {
   }
 
   @Override
+  public String toString() {
+    return "ContactData{" +
+            "firstname='" + firstname + '\'' +
+            ", middlename='" + middlename + '\'' +
+            ", lastname='" + lastname + '\'' +
+            ", email='" + email + '\'' +
+            ", address='" + address + '\'' +
+            ", id=" + id +
+            ", mobilePhone='" + mobilePhone + '\'' +
+            '}';
+  }
+
+  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
+
     ContactData that = (ContactData) o;
-    return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname);
+
+    if (id != that.id) return false;
+    if (!Objects.equals(firstname, that.firstname)) return false;
+    if (!Objects.equals(middlename, that.middlename)) return false;
+    if (!Objects.equals(lastname, that.lastname)) return false;
+    if (!Objects.equals(email, that.email)) return false;
+    if (!Objects.equals(address, that.address)) return false;
+    return Objects.equals(mobilePhone, that.mobilePhone);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstname, lastname, id);
-  }
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "firstname='" + firstname + '\'' +
-            ", lastname='" + lastname + '\'' +
-            ", id=" + id +
-            '}';
+    int result = firstname != null ? firstname.hashCode() : 0;
+    result = 31 * result + (middlename != null ? middlename.hashCode() : 0);
+    result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+    result = 31 * result + (email != null ? email.hashCode() : 0);
+    result = 31 * result + (address != null ? address.hashCode() : 0);
+    result = 31 * result + id;
+    result = 31 * result + (mobilePhone != null ? mobilePhone.hashCode() : 0);
+    return result;
   }
 
   public ContactData withFirstname(String firstname) {
