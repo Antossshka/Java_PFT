@@ -8,6 +8,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,8 +17,8 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 @SuppressWarnings("unchecked")
 public class ContactCreationTest extends TestBase {
@@ -70,11 +71,14 @@ public class ContactCreationTest extends TestBase {
 
   @Test(enabled = false)
   public void testBadContactCreation() throws Exception {
+    Groups groups = app.db().groups();
+    File photo = new File("src/test/resources/photo.PNG");
+    ContactData newContact = new ContactData().withFirstname("Dmitry'").withLastname("Blinovsky").withMiddlename("Petrov")
+            .withMobilePhone("89991112299").withEmail("petrov.db@mail.ru").withAddress("Mowcow").withPhoto(photo)
+            .inGroup(groups.iterator().next());
     app.goTo().homePage();
-    ContactData contact = new ContactData().withFirstname("Dmitry'").withLastname("Blinovsky");
     Contacts before = app.contact().all();
-    app.contact().create(new ContactData().withFirstname("Dmitry'").withLastname("Blinovsky").withMiddlename("Petrov")
-            .withMobilePhone("89991112299").withEmail("petrov.db@mail.ru").withAddress("Mowcow").withGroup("test1"));
+    app.contact().create(newContact);
     assertThat(app().contact().count(), equalTo(before.size()));
     Contacts after = app.contact().all();
     assertThat(after, equalTo(before));
