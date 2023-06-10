@@ -7,3 +7,5 @@ $g_db_password = '';
 $g_signup_use_captcha = OFF;
 $g_default_timezone       = 'Europe/Berlin';
 $g_crypto_master_salt     = 'eJQ8QtEUHy7KPsR96S8x9WWGi9nE0tyN5m8DZRqmgzM=';
+$g_phpMailer_method = PHPMAILER_METHOD_SMTP;
+$g_smtp_host = 'localhost';
