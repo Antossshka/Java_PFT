@@ -173,6 +173,20 @@ public class ContactHelper extends HelperBase {
             .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withEmail(email).withEmail2(email2).withEmail3(email3).withAddress(address);
   }
 
+  public void selectGroupByName(String name) {
+    new Select(wd.findElement(By.xpath("//select[@name='to_group']"))).selectByVisibleText(name);
+  }
+  public void addInGroup() {
+    wd.findElement(By.xpath("//input[@name='add']")).click();
+  }
+
+  public void selectListGroup(String name) {
+    new Select(wd.findElement(By.xpath("//select[@name='group']"))).selectByVisibleText(name);
+  }
+
+  public void removeContact() {
+    wd.findElement(By.xpath("//input[@name='remove']")).click();
+  }
 
 }
 

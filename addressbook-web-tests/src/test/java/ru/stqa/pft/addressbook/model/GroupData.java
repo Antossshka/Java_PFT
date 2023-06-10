@@ -15,6 +15,8 @@ import java.util.Set;
 @Entity
 @Table(name="group_list")
 public class GroupData {
+  @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)
+  private final Set<ContactData> contacts = new HashSet<>();
   @Expose
   @Column(name="group_name")
   public String name;
@@ -31,9 +33,6 @@ public class GroupData {
   @Id
   @Column(name="group_id")
   private int id = Integer.MAX_VALUE;
-
-  @ManyToMany(mappedBy = "groups")
-  private Set<ContactData> contacts = new HashSet<ContactData>();
 
   public Set<ContactData> getContacts() {
     return new Contacts(contacts);
