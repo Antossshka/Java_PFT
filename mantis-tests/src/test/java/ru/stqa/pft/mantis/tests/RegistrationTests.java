@@ -20,8 +20,8 @@ public class RegistrationTests extends TestBase{
   @Test
   public void testRegistration() throws IOException, MessagingException, ParseException {
     long now = System.currentTimeMillis();
-    String password = "password";
     String user = String.format("user%s", now);
+    String password = "password";
     String email = String.format("user%s@localhost.localdomain", now);
     app.james().createUser(user, password);
     app.registration().start(user, email);
@@ -38,7 +38,7 @@ public class RegistrationTests extends TestBase{
     return regex.getText(mailMessage.text);
   }
 
- // @AfterMethod(alwaysRun = true)
+  //@AfterMethod(alwaysRun = true)
   public void stopMailServer() {
     app.mail().stop();
   }
