@@ -9,7 +9,7 @@ public class AuthorizationHelper extends HelperBase {
   }
 
   public void authorizationAsAdmin() {
-    wd.get("http://localhost/mantisbt-2.25.7/login_page.php");
+    wd.get(app.getProperty("web.baseUrl") + "/login_page.php");
     type(By.name("username"), "administrator");
     click(By.xpath("//input[@type='submit']"));
     //wd.get("http://localhost/mantisbt-2.25.7/login_password_page.php");
@@ -18,7 +18,7 @@ public class AuthorizationHelper extends HelperBase {
   }
 
   public void initChangePassword(int id) {
-    wd.get("http://localhost/mantisbt-2.25.7/account_page.php");
+    wd.get(app.getProperty("web.baseUrl") + "/account_page.php");
     click(By.xpath("//a[@href='/mantisbt-2.25.7/manage_overview_page.php']"));
     click(By.xpath("//a[@href='/mantisbt-2.25.7/manage_user_page.php']"));
     click(By.xpath("//a[@href='manage_user_edit_page.php?user_id=" + id + "']"));
