@@ -21,7 +21,7 @@ public class AddContactInGroupTest extends TestBase{
     if (app.contact().list().size() == 0) {
       Groups groups = app.db().groups();
       app.contact().create(new ContactData().withFirstname("Dmitry").withLastname("Blinovsky").withMiddlename("Petrov")
-              .withMobilePhone("89991112299").withEmail("petrov.db@mail.ru").withAddress("Mowcow").inGroup(groups.iterator().next()));
+              .withMobilePhone("89991112299").withEmail("petrov.db@mail.ru").withAddress("Mowcow"));
     }
     if (app.db().groups().size() == 0) {
       app().goTo().groupPage();
