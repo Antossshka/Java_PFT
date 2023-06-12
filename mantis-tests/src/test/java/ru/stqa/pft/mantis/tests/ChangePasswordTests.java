@@ -10,6 +10,7 @@ import ru.stqa.pft.mantis.model.Users;
 import ru.stqa.pft.mantis.model.UsersData;
 
 import javax.mail.MessagingException;
+import javax.xml.rpc.ServiceException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Set;
@@ -25,7 +26,8 @@ public class ChangePasswordTests extends TestBase {
   }
 
   @Test
-  public void testChangePassword() throws IOException, ParseException, MessagingException {
+  public void testChangePassword() throws IOException, ParseException, MessagingException, ServiceException {
+    skipIfNotFixedBugify(417);
     Users users = app.db().users();
     Set<UsersData> usersF = users.stream().filter(u -> u.getId() > 1).collect(Collectors.toSet());
     UsersData user = usersF.iterator().next();

@@ -2,11 +2,13 @@ package ru.stqa.pft.mantis.tests;
 
 import org.apache.hc.core5.http.ParseException;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.pft.mantis.model.MailMessage;
 
 import javax.mail.MessagingException;
+import javax.xml.rpc.ServiceException;
 import java.io.IOException;
 import java.util.List;
 
@@ -18,15 +20,16 @@ public class RegistrationTests extends TestBase{
   }
 
   @Test
-  public void testRegistration() throws IOException, MessagingException, ParseException {
+  public void testRegistration() throws IOException, MessagingException, ParseException, ServiceException {
+    skipIfNotFixedBugify(417);
     long now = System.currentTimeMillis();
     String user = String.format("user%s", now);
     String password = "password";
     String email = String.format("user%s@localhost.localdomain", now);
-    app.james().createUser(user, password);
+    // app.james().createUser(user, password);
     app.registration().start(user, email);
-    //List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
-    List<MailMessage> mailMessages = app.james().waitForMail(user, password, 60000);
+    List<MailMessage> mailMessages = app.mail().waitForMail(2, 60000);
+    // List<MailMessage> mailMessages = app.james().waitForMail(user, password, 60000);
     String confirmationLink = findConfirmationLink(mailMessages, email);
     app.registration().finish(confirmationLink, password);
     Assert.assertTrue(app.newSession().login(user, password));
@@ -38,7 +41,7 @@ public class RegistrationTests extends TestBase{
     return regex.getText(mailMessage.text);
   }
 
-  //@AfterMethod(alwaysRun = true)
+  @AfterMethod(alwaysRun = true)
   public void stopMailServer() {
     app.mail().stop();
   }
