@@ -21,6 +21,8 @@ public class AuthorizationHelper extends HelperBase {
     wd.get(app.getProperty("web.baseUrl") + "/account_page.php");
     click(By.xpath("//a[@href='/mantisbt-2.25.7/manage_overview_page.php']"));
     click(By.xpath("//a[@href='/mantisbt-2.25.7/manage_user_page.php']"));
+    click(By.xpath("//a[@href='/" + app.getProperty("mantis.version") + "/manage_overview_page.php']"));
+    click(By.xpath("//a[@href='/" + app.getProperty("mantis.version") + "/manage_user_page.php']"));
     click(By.xpath("//a[@href='manage_user_edit_page.php?user_id=" + id + "']"));
     click(By.xpath("//input[@value='Сбросить пароль']"));
   }
