@@ -173,9 +173,10 @@ public class ContactHelper extends HelperBase {
             .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withEmail(email).withEmail2(email2).withEmail3(email3).withAddress(address);
   }
 
-  public void selectGroupByName(String name) {
-    new Select(wd.findElement(By.xpath("//select[@name='to_group']"))).selectByVisibleText(name);
+  public void selectGroupById(int id) {
+    new Select(wd.findElement(By.xpath("//select[@name='to_group']"))).selectByValue(String.valueOf(id));
   }
+
   public void addInGroup() {
     wd.findElement(By.xpath("//input[@name='add']")).click();
   }

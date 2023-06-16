@@ -44,7 +44,7 @@ public class AddContactInGroupTest extends TestBase{
 
     app.goTo().homePage();
     app.contact().selectContactById(contactBefore.getId());
-    app.contact().selectGroupByName(group.getName());
+    app.contact().selectGroupById(group.getId());
     app.contact().addInGroup();
     app.goTo().homePage();
 
